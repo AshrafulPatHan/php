@@ -1,8 +1,16 @@
 <?php
 
-// set Variables
+// set Variables string
 $name = "ashraful";
 
-echo $name;
+// number Variables
+$x = 10;
+$y = 2;
+
+echo "$name \n";
+echo $x + $y ;
+echo "\n";
+
+
 
 ?>
