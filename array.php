@@ -14,6 +14,29 @@ foreach ($array_ as $x) {
 }
 echo " \n";
 
+# PHP Associative Arrays
+$car = array("brand"=>"Ford", "model"=>"Mustang", "year"=>1964);
+var_dump($car);
+echo $car["model"];
+echo " \n";
+
+// change the year value
+$car["year"] = 2024;
+var_dump($car);
+echo " \n";
 
 
+
+# PHP Create Arrays
+$carsName = ["Volvo", "BMW", "Toyota"];
+echo $carsName[0];
+echo " \n";
+
+
+#PHP Update Array Items
+
+
+
+#END
+echo " \n";
 ?>
