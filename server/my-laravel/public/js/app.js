@@ -1,0 +1,3 @@
+alert("Laravel JS Connected!");
+
+
