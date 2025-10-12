@@ -14,9 +14,8 @@ Route::get('/welcome', function () {
 // api routes
 Route::get('/api', function () {
     return [
-        "hi",
-        15,
-        "bye"
+        "Status"=>"the server is working",
+        "Vartion"=>"1.2",
     ];
 });
 

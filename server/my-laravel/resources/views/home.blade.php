@@ -15,7 +15,7 @@
     <form action="{{ url('fromuser') }}" method="post">
         @csrf
         <p>type your name</p>
-        <input type="text" placeholder="Type your name" name="fullname" id="fullname">
+        <input type="text" placeholder="Type your name" name="fullname" id="fullname" require>
         <br>
         <button type="submit">submit</button>
     </form>
