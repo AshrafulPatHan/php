@@ -10,6 +10,16 @@
 <body>
     <h1 class="text-3xl font-bold text-amber-500">Home</h1>
 
+    <br>
+    <!-- form input -->
+    <form action="{{ url('fromuser') }}" method="post">
+        @csrf
+        <p>type your name</p>
+        <input type="text" placeholder="Type your name" name="fullname" id="fullname">
+        <br>
+        <button type="submit">submit</button>
+    </form>
+
     <!-- link javascript -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

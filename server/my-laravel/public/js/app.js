@@ -1,3 +1,3 @@
-alert("Laravel JS Connected!");
+// alert("Laravel JS Connected!");
 
 

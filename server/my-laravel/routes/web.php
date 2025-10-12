@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request; # add this code for useing post method
 
 Route::get('/', function () {
     return view('home');
@@ -18,3 +19,17 @@ Route::get('/api', function () {
         "bye"
     ];
 });
+
+// get data from url
+Route::get('/api/{name}',function($name){
+    return "<h1> $name </h1>";
+});
+
+# --- post routes
+// post route example
+Route::post('/fromuser', function(Request $request){
+    $fullname = $request->input("fullname");
+    return "Your name is $fullname ";
+
+});
+
