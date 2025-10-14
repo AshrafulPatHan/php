@@ -1,3 +1,6 @@
+## new project
+- type > laravel new
+
 ## how to set up
 
 - to run project = ( php artisan serve )
