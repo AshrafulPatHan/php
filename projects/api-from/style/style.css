@@ -1,0 +1,22 @@
+
+
+/* header text */
+.header-text{
+    color: blueviolet;
+}
+
+
+/* style link sectin */
+.link-div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.link-div p {
+    color: red;
+    font-weight: 800;
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+
