@@ -19,10 +19,10 @@ echo '
 
     <div class="link-div">
         <p>From routes</p>
-        <a href="#">get user</a>
-        <a href="#">post user</a>
-        <a href="#">update user</a>
-        <a href="#">delete user</a>
+        <a href="/pages/delete.html">get user</a>
+        <a href="/pages/registration.html">post user</a>
+        <a href="/pages/update.html">update user</a>
+        <a href="/pages/user.html">delete user</a>
     </div>
     
     <div class="link-div">
