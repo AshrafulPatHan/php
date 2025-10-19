@@ -16,6 +16,8 @@ echo '
 </head>
 <body>
 	<h1>Ashraful Pathan</h1>
+	<a href="https://testphpcrud.free.nf/from">send your name </a>
+	<a href="https://testphpcrud.free.nf/from">get user</a>
 </body>
 </html>
 

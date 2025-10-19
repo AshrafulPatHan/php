@@ -1,98 +1,118 @@
-<!doctype html>
-<html lang="bn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Send JSON to API</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Send Data to PHP Server</title>
   <style>
-    :root{--bg:#0f172a;--card:#0b1220;--accent:#6366f1;--muted:#94a3b8;--white:#eef2ff}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#071029 0%,#0b1220 100%);color:var(--white);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-    .card{background:var(--card);padding:28px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,.6);width:100%;max-width:520px}
-    h1{margin:0 0 12px;font-size:20px}
-    label{display:block;margin-top:12px;font-size:14px;color:var(--muted)}
-    input[type="text"], input[type="email"]{width:100%;padding:10px 12px;margin-top:6px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:transparent;color:var(--white);outline:none}
-    .row{display:flex;gap:10px;margin-top:16px}
-    button{background:var(--accent);border:none;color:white;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
-    pre{background:#021026;padding:12px;border-radius:8px;margin-top:16px;white-space:pre-wrap;color:#d1e7ff;overflow:auto}
-    .muted{color:var(--muted);font-size:13px;margin-top:8px}
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #74ABE2, #5563DE);
+      color: #333;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      width: 320px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #5563DE;
+      box-shadow: 0 0 5px rgba(85, 99, 222, 0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #5563DE;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #4050c8;
+    }
+
+    .response {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Send JSON to API</h1>
+  <div class="form-container">
+    <h2>Send Your Info</h2>
+    <form id="userForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
 
-    <label for="name">Name</label>
-    <input id="name" type="text" placeholder="Ashraful" value="Ashraful" />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-    <label for="email">Email</label>
-    <input id="email" type="email" placeholder="ashraful@mail.com" value="ashraful@mail.com" />
+      <button type="submit">Send</button>
+    </form>
 
-    <div class="row">
-      <button id="sendBtn">Send (POST JSON)</button>
-      <button id="sendGetBtn" style="background:#475569">Send (GET)</button>
-    </div>
-
-    <div class="muted">Response / debug:</div>
-    <pre id="output">-- waiting --</pre>
+  <div class="response" id="response" style="white-space: pre-wrap; font-family: monospace;"></div>
+    <!-- <div class="response" id="response"></div> -->
   </div>
 
-  <script>
-    const apiUrl = "https://testphpcrud.free.nf/api.php";
-    const out = document.getElementById('output');
-    const sendBtn = document.getElementById('sendBtn');
-    const sendGetBtn = document.getElementById('sendGetBtn');
 
-    function show(msg){
-      out.textContent = typeof msg === 'string' ? msg : JSON.stringify(msg, null, 2);
-    }
+<script>
+const form = document.getElementById("userForm");
+const responseBox = document.getElementById("response");
 
-    async function sendJSON(name, email){
-      const payload = { name, email };
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
 
-      try {
-        show("Sending...\n\n" + JSON.stringify(payload, null, 2));
-
-        const res = await fetch(apiUrl, {
-          method: "POST",
-          mode: "cors",              // 대부분 ক্ষেত্রে OK
-          // credentials: 'include', // প্রয়োজনে আনকমেন্ট করো — কিন্তু সেক্ষেত্রে সার্ভার CORS-এ credentials অনুমোদন করতে হবে
-          headers: {
-            "Content-Type": "application/json",
-            // "Accept": "application/json"
-          },
-          body: JSON.stringify(payload)
-        });
-
-        // সার্ভারের রেসপন্স ধরার চেষ্টা
-        const text = await res.text(); // text() করে নিচ্ছি কারণ সার্ভার HTML বা plain text ফিরিয়েও দিতে পারে
-        show("HTTP " + res.status + " " + res.statusText + "\n\n" + text);
-      } catch (err) {
-        show("Request failed:\n" + err.toString());
-      }
-    }
-
-    async function sendGET(){
-      try {
-        show("Sending GET request...");
-        // GET উদাহরণ (query params)
-        const url = apiUrl + "?name=" + encodeURIComponent(document.getElementById('name').value)
-                          + "&email=" + encodeURIComponent(document.getElementById('email').value);
-        const res = await fetch(url, { method: "GET", mode: "cors" });
-        const text = await res.text();
-        show("HTTP " + res.status + " " + res.statusText + "\n\n" + text);
-      } catch (err){
-        show("GET failed:\n" + err.toString());
-      }
-    }
-
-    sendBtn.addEventListener('click', () => {
-      const n = document.getElementById('name').value.trim();
-      const e = document.getElementById('email').value.trim();
-      if(!n || !e){ show("Please provide name and email."); return; }
-      sendJSON(n, e);
+  try {
+    const res = await fetch("http://localhost:8000/crud-json.php", {
+      method: "POST",
+      body: formData,
     });
 
-    sendGetBtn.addEventListener('click', () => sendGET());
-  </script>
+    // সার্ভার যেটা পাঠাবে, সেটা সরাসরি কাঁচা টেক্সট হিসেবে দেখাবে
+    const text = await res.text();
+    responseBox.textContent = text;
+  } catch (error) {
+    responseBox.textContent = "❌ Error: Unable to send request.";
+  }
+});
+</script>
+
 </body>
 </html>
