@@ -18,7 +18,7 @@ echo '
     <h1 class="header-text">PHP app running on vartion 1.0</h1>
 
     <div class="link-div">
-        <p>from routes</p>
+        <p>From routes</p>
         <a href="#">get user</a>
         <a href="#">post user</a>
         <a href="#">update user</a>
