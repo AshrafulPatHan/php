@@ -27,10 +27,10 @@ echo '
     
     <div class="link-div">
         <p>Api route</p>
-        <a href="#">get user api</a>
-        <a href="#">post user api</a>
-        <a href="#">update user api</a>
-        <a href="#">delete user api</a>
+        <a href="/api/get-user.php">get user api</a>
+        <a href="/api/post-user.php">post user api</a>
+        <a href="/api/update-user.php">update user api</a>
+        <a href="/api/delete-user.php">delete user api</a>
     </div>
     
 
@@ -38,6 +38,35 @@ echo '
 </html>
 
 ';
+
+
+# -- connect database
+function DatabaseCollection(){
+    # SQLite database connection
+    try {
+        // $db = new PDO('sqlite:user.sqlite'); < if file on root path >
+        $db = new PDO('sqlite:' . __DIR__ . '/DB/user.sqlite');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "✅ SQLite Database Connected Successfully! \n";
+        
+        # create table
+        function CreateUserTable($db){
+            $db->exec("CREATE TABLE IF NOT EXISTS user (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT,
+                email TEXT
+            )");
+            echo "✅ Table created successfully! \n";
+        };
+        // CreateUserTable($db);
+        
+    } catch (PDOException $e) {
+        echo "❌ Connection Failed: " . $e->getMessage();
+    }
+}
+// DatabaseCollection();
+
+
 
 
 ?>
