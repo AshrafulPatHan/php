@@ -1,4 +1,9 @@
 
+/* gloval css */
+*{
+    background: #112a2c;
+}
+
 
 /* header text */
 .header-text{
@@ -22,6 +27,7 @@
 .link-div a {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-decoration: none;
+    color: cadetblue;
 }
 
 
