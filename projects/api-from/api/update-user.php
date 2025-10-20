@@ -43,12 +43,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             # Update user
             function UpdateUser($db,$id,$name,$email){
                $stmt = $db->prepare("UPDATE users SET name = :name, email = :email WHERE id = :id");
-            $stmt->bindValue(':name', "$name");
-            $stmt->bindValue(':email', "$email");
-            $stmt->bindValue(':id', $id);
-            $stmt->execute();
+                $stmt->bindValue(':name', "$name");
+                $stmt->bindValue(':email', "$email");
+                $stmt->bindValue(':id', $id);
+                $stmt->execute();
 
-            echo "✅ User updated successfully!\n";
+                echo "✅ User updated successfully!\n";
             };
             UpdateUser($db,$id,$name,$email);
             

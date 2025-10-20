@@ -68,7 +68,7 @@ try {
 		$stmt->bindValue(':id', 1);
 		$stmt->execute();
 
-		echo "user is deleted ! \n"
+		echo "user is deleted ! \n";
     }
     // DeleteUser($db);
 
