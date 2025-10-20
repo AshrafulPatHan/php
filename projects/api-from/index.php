@@ -51,10 +51,10 @@ function DatabaseCollection(){
         
         # create table
         function CreateUserTable($db){
-            $db->exec("CREATE TABLE IF NOT EXISTS user (
+            $db->exec("CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                name TEXT,
-                email TEXT
+                name TEXT NOT NULL,
+                email TEXT NOT NULL
             )");
             echo "✅ Table created successfully! \n";
         };

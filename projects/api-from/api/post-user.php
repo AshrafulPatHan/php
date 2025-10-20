@@ -24,6 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $db = new PDO('sqlite:' . __DIR__ . '/../DB/user.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "✅ SQLite Database Connected Successfully! \n";
+
+
+            function createTable(){
+                // is table is not exist # this code is work
+                $db->exec("CREATE TABLE IF NOT EXISTS users (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    email TEXT NOT NULL
+                )");
+
+                echo "✅ Table checked/created successfully! \n";
+            }
+            // createTable()
+            
             
             # add user
             function AddUser($db,$name,$email){
