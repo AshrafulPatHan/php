@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update user</title>
+    <!-- link favicon -->
+    <link rel="shortcut icon" href="../assets/phplite.png" type="image/x-icon">
     <!-- link css -->
     <link rel="stylesheet" href="../style/style.css">
 </head>
@@ -34,7 +36,7 @@
     <script>
         const form = document.getElementById('updateForm');
         const responseMessage = document.getElementById('responseMessage');
-        const apiUrl = 'http://localhost:8000/api/update-user.php'; // তোমার PHP API ফাইলের path
+        const apiUrl = '/api/update-user.php'; // তোমার PHP API ফাইলের path
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();

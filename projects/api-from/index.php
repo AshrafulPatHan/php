@@ -15,7 +15,7 @@ echo '
     <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-    <h1 class="header-text">PHP app running on vartion : beta 1.1</h1>
+    <h1 class="header-text">PHP app running on vartion : 1.0</h1>
 
     <div class="link-div">
         <p>From routes</p>
