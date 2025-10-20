@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PATCH") {
     
     // if the name or email is ematy 
     if (empty($name) || empty($email) || empty($id) ) {
-        echo "Please provide both id and name and email.";
+        echo json_encode(["error" => "Please provide both name and email."]);
         exit;
     }
         
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PATCH") {
             // $db = new PDO('sqlite:user.sqlite'); < if file on root path >
             $db = new PDO('sqlite:' . __DIR__ . '/../DB/user.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "✅ SQLite Database Connected Successfully! \n";
+            // echo "✅ SQLite Database Connected Successfully! \n";
 
 
             function createTable(){
@@ -47,21 +47,28 @@ if ($_SERVER["REQUEST_METHOD"] === "PATCH") {
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
 
-                echo "✅ User updated successfully!\n";
+                // echo "✅ User updated successfully!\n";
+                echo json_encode([
+                    "success" => true,
+                    "message" => "User is update successfully",
+                    "data" => [
+                        "name" => $name,
+                        "email" => $email
+                    ]
+                ]);
             };
             UpdateUser($db,$id,$name,$email);
             
         } catch (PDOException $e) {
-            echo "❌ Connection Failed: " . $e->getMessage() . "\n";
+            echo json_encode(["error" => "Connection Failed: " . $e->getMessage()]);
         }
     }
     DatabaseCollection($id,$name,$email);
 
-    echo "The mail is send by : $name , on this email : $email , his id is : $id \n";
 
 
 } else {
-    echo "Only POST request is allowed!";
+    echo json_encode(["error" => "Only PATCH request is allowed!"]);
 }
 
 

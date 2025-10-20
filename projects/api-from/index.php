@@ -15,14 +15,14 @@ echo '
     <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
-    <h1 class="header-text">PHP app running on vartion 1.01</h1>
+    <h1 class="header-text">PHP app running on vartion : beta 1.1</h1>
 
     <div class="link-div">
         <p>From routes</p>
-        <a href="/pages/delete.html">get user</a>
-        <a href="/pages/registration.html">post user</a>
-        <a href="/pages/update.html">update user</a>
-        <a href="/pages/user.html">delete user</a>
+        <a href="/pages/user.html">Get user</a>
+        <a href="/pages/registration.html">Post user</a>
+        <a href="/pages/update.html">Update user</a>
+        <a href="/pages/delete.html">Delete user</a>
     </div>
     
     <div class="link-div">

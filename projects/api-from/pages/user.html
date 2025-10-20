@@ -10,9 +10,41 @@
 </head>
 
 <body>
+    <h2>All user</h2>
+
+    <ul id="user-list">
+        <!-- JSON data will be inserted here -->
+    </ul>
 
     <!-- add javascript -->
     <script src="../script/main.js"></script>
+
+    <!-- my script -->
+    <script>
+        const jsonUrl = '/api/get-user.php';
+
+        fetch(jsonUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const userList = document.getElementById('user-list');
+
+                // এখন data.data এর ভেতরই ইউজার লিস্ট আছে
+                data.data.forEach(user => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `Name: ${user.name}, Email: ${user.email}`;
+                    userList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching or parsing JSON:', error);
+            });
+    </script>
+
 </body>
 
 </html>

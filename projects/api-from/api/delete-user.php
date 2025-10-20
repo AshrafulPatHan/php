@@ -11,7 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     
     // if the name or email is ematy 
     if ( empty($id) ) {
-        echo "Please provide both id and name and email.";
+        // echo "Please provide both id and name and email.";
+        echo json_encode(["error" => "Please provide both name and email."]);
         exit;
     }
     
@@ -24,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
             // $db = new PDO('sqlite:user.sqlite'); < if file on root path >
             $db = new PDO('sqlite:' . __DIR__ . '/../DB/user.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "✅ SQLite Database Connected Successfully! \n";
+            // echo "✅ SQLite Database Connected Successfully! \n";
 
 
             function createTable(){
@@ -46,7 +47,16 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
                 $stmt->bindValue(':id', $id);
                 $stmt->execute();
 
-                echo "user is deleted ! \n";
+                // echo "user is deleted ! \n";
+                echo json_encode([
+                    "success" => true,
+                    "message" => "User is deleted successfully",
+                    "data" => [
+                        "id" => $id,
+                        "name" => $name,
+                        "email" => $email
+                    ]
+                ]);
             };
             DeleteUser($db,$id,$name,$email);
             
@@ -56,11 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     }
     DatabaseCollection($id,$name,$email);
 
-    echo "The mail is send by : $name , on this email : $email , his id is : $id \n";
+    // echo "The mail is send by : $name , on this email : $email , his id is : $id \n";
 
 
 } else {
-    echo "Only POST request is allowed!";
+    // echo "Only POST request is allowed!";
+    echo json_encode(["error" => "Only POST request is allowed!"]);
 }
 
 

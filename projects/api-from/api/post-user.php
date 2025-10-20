@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     // if the name or email is ematy 
     if (empty($name) || empty($email)) {
-        echo "Please provide both name and email.";
+        // echo "Please provide both name and email.";
+        echo json_encode(["error" => "Please provide both name and email."]);
         exit;
     }
     
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             // $db = new PDO('sqlite:user.sqlite'); < if file on root path >
             $db = new PDO('sqlite:' . __DIR__ . '/../DB/user.sqlite');
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "✅ SQLite Database Connected Successfully! \n";
+            // echo "✅ SQLite Database Connected Successfully! \n";
 
 
             function createTable(){
@@ -34,7 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     email TEXT NOT NULL
                 )");
 
-                echo "✅ Table checked/created successfully! \n";
+                // echo "✅ Table checked/created successfully! \n";
+                 echo json_encode(["message" => "✅ Table checked/created successfully!"]);
             }
             // createTable()
             
@@ -46,21 +48,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $stmt->bindValue(':email', "$email");
                 $stmt->execute();
 
-                echo "✅ New user added! \n";
+                // echo "✅ New user added! \n";
+                echo json_encode([
+                    "success" => true,
+                    "message" => "New user added successfully",
+                    "data" => [
+                        "name" => $name,
+                        "email" => $email
+                    ]
+                ]);
             };
             AddUser($db,$name,$email);
             
         } catch (PDOException $e) {
-            echo "❌ Connection Failed: " . $e->getMessage() . "\n";
+            // echo "❌ Connection Failed: " . $e->getMessage() . "\n";
+            echo json_encode(["error" => "Connection Failed: " . $e->getMessage()]);
         }
     }
     DatabaseCollection($name,$email);
 
-    echo "The mail is send by : $name , on this email : $email \n";
+    // echo "The mail is send by : $name , on this email : $email \n";
+    
 
 
 } else {
-    echo "Only POST request is allowed!";
+    // echo "Only POST request is allowed!";
+    echo json_encode(["error" => "Only POST request is allowed!"]);
 }
 
 
