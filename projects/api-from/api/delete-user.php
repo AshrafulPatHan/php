@@ -1,7 +1,7 @@
 <?php
 
 # post requist
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     // input reseve
     $data = json_decode(file_get_contents("php://input"), true);
     $id = $data['id'] ?? '';

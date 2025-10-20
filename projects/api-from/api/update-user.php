@@ -1,7 +1,7 @@
 <?php
 
 # post requist
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "PATCH") {
     // input reseve
     $data = json_decode(file_get_contents("php://input"), true);
     $id = $data['id'] ?? '';
@@ -14,8 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Please provide both id and name and email.";
         exit;
     }
-    
-    
+        
         
     # -- connect database
     function DatabaseCollection($id,$name,$email){
