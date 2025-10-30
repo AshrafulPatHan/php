@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Arif Rahman",
+        "photo": "arif_rahman.png",
+        "email": "arif.rahman@gmail.com",
+        "phone": "+8801615895701"
+    },
+    {
+        "id": 2,
+        "name": "Fatima Khatun",
+        "photo": "fatima_khatun.png",
+        "email": "fatima.khatun@gmail.com",
+        "phone": "+8801715234567"
+    },
+    {
+        "id": 3,
+        "name": "Karim Ahmed",
+        "photo": "karim_ahmed.png",
+        "email": "karim.ahmed@gmail.com",
+        "phone": "+8801823456789"
+    },
+    {
+        "id": 4,
+        "name": "Nusrat Jahan",
+        "photo": "nusrat_jahan.png",
+        "email": "nusrat.jahan@gmail.com",
+        "phone": "+8801934567890"
+    }
+]
