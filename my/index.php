@@ -1,5 +1,5 @@
 <?php
 
-echo "Start"
+echo "php server is running"
 
 ?>
