@@ -9,7 +9,7 @@ $db = new DataBase();
 if (!$db) {
     echo $db->lastErrorMg();
 }else{
-    echo "Opened database successfully\n";
+    echo "Opened database successfully \n ";
 }
 
 // Create Tabil
@@ -24,9 +24,24 @@ function CreateTabil($db){
 
 // Insert Data 
 function Addcars($db){
-    $db->exec("INSERT INTO users (carName,brand,price) VALUE ('auto riska','tata','100000') ");
+    $db->exec("INSERT INTO cars (carName,brand,price) VALUES ('auto riska','tata','100000')");
+};
+// Addcars($db);
+
+// Query the database
+$AllCars = $db->query('SELECT * FROM cars');
+
+$hi = "all cars";
+
+function CarData($AllCars){
+    // Fetch rows as associative arrays
+    while ($row = $AllCars->fetchArray(SQLITE3_ASSOC)) {
+        return 'ID: ' . $row['id'] . ' Car Name: ' . $row['carName'] . ' , Brand: ' . $row['brand'] . ' , Price: ' . $row['price'] . " \n";
+    }
 }
-Addcars($db);
+$renderCar = CarData($AllCars);
+
+
 // html
 echo '
 <!DOCTYPE html>
@@ -38,6 +53,8 @@ echo '
 </head>
 <body>
     <h2>Hello Cars</h2>
+    <p>'.$hi.'</p>
+    <p>'.$renderCar.'</p>
 </body>
 </html>
 ';
